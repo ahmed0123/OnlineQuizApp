@@ -1,14 +1,16 @@
-package com.example.android.onlinequizapp;
+package com.example.android.onlinequizapp.activites;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.android.onlinequizapp.R;
 import com.example.android.onlinequizapp.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,12 +21,11 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class MainActivity extends AppCompatActivity {
 	
-	private MaterialEditText signUpUserName, signUpPassword, signUpEmail;
-	private MaterialEditText signInUserName, signInPassword;
-	
-	private Button signUpButton, signInButton;
 	FirebaseDatabase database;
 	DatabaseReference users;
+	private MaterialEditText signUpUserName, signUpPassword, signUpEmail;
+	private MaterialEditText signInUserName, signInPassword;
+	private Button signUpButton, signInButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
 					if (!user.isEmpty()) {
 						User login = dataSnapshot.child(user).getValue(User.class);
 						if (login.getPassword().equals(password)) {
-							Toast.makeText(MainActivity.this, "Login Ok", Toast.LENGTH_SHORT).show();
 							ClearEditText();
+							startActivity(new Intent(MainActivity.this, Home.class));
+							finish();
 						} else {
 							Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
 						}
