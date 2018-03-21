@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.onlinequizapp.Interface.ItemClickListiner;
 import com.example.android.onlinequizapp.R;
-import com.example.android.onlinequizapp.interfac.ItemClickListiner;
 
 /**
  * Created by Ahmed El Hendawy on 2018/03/19.

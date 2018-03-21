@@ -1,4 +1,4 @@
-package com.example.android.onlinequizapp.interfac;
+package com.example.android.onlinequizapp.Interface;
 
 import android.view.View;
 

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.android.onlinequizapp.R;
 import com.example.android.onlinequizapp.model.User;
+import com.example.android.onlinequizapp.utils.Common;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
 					if (!user.isEmpty()) {
 						User login = dataSnapshot.child(user).getValue(User.class);
 						if (login.getPassword().equals(password)) {
-							ClearEditText();
-							startActivity(new Intent(MainActivity.this, Home.class));
+							Intent intent = new Intent(MainActivity.this, Home.class);
+							Common.currentUser = login;
+							startActivity(intent);
 							finish();
+							ClearEditText();
 						} else {
 							Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
 						}

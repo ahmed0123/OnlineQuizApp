@@ -1,6 +1,7 @@
 package com.example.android.onlinequizapp.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,11 +11,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.example.android.onlinequizapp.Interface.ItemClickListiner;
 import com.example.android.onlinequizapp.R;
-import com.example.android.onlinequizapp.interfac.ItemClickListiner;
+import com.example.android.onlinequizapp.activites.Start;
 import com.example.android.onlinequizapp.model.Category;
+import com.example.android.onlinequizapp.utils.Common;
 import com.example.android.onlinequizapp.viewHolder.CategoryViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -81,7 +83,10 @@ public class CategoryFragment extends Fragment {
 				holder.setItemClickListiner(new ItemClickListiner() {
 					@Override
 					public void onClick(View view, int position, boolean isLongClick) {
-						Toast.makeText(getActivity(), String.format("%s|%s", adapter.getRef(position).getKey(), model.getName()), Toast.LENGTH_SHORT).show();
+						
+						Intent startGame = new Intent(getActivity(), Start.class);
+						Common.categoryId = adapter.getRef(position).getKey();
+						startActivity(startGame);
 						
 					}
 				});
