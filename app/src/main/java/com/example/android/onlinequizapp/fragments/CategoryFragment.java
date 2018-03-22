@@ -31,15 +31,8 @@ public class CategoryFragment extends Fragment {
 	RecyclerView listCategory;
 	RecyclerView.LayoutManager layoutManager;
 	FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter;
-	
-	Query query = FirebaseDatabase.getInstance()
-			.getReference()
-			.child("Category")
-			.limitToLast(5);
-	FirebaseRecyclerOptions<Category> options =
-			new FirebaseRecyclerOptions.Builder<Category>()
-					.setQuery(query, Category.class)
-					.build();
+	Query query;
+	FirebaseRecyclerOptions<Category> options;
 	
 	public CategoryFragment() {
 		// Required empty public constructor
@@ -54,7 +47,14 @@ public class CategoryFragment extends Fragment {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		query = FirebaseDatabase.getInstance()
+				.getReference()
+				.child("Category")
+				.limitToLast(5);
 		
+		options = new FirebaseRecyclerOptions.Builder<Category>()
+				.setQuery(query, Category.class)
+				.build();
 	}
 	
 	@Override
